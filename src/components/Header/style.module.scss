@@ -1,0 +1,23 @@
+@import "../../styles/colors";
+@import "../../styles/fonts";
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  font-family: $headerFont;
+  font-size: $fontSize;
+  background-color: $headerColor;
+
+  .popularCoins {
+    display: flex;
+
+    .coin {
+      margin-right: 10px;
+    }
+  }
+
+  .portfolio {
+    cursor: pointer;
+  }
+}
