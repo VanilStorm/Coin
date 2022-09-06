@@ -1,8 +1,32 @@
 @import "../../../styles/colors";
+@import "../../../styles/fonts";
+
+* {
+  font-family: $headerFont;
+  font-size: 14px;
+}
 
 .table {
   margin-top: 20px;
   width: 100%;
   text-align: center;
+}
 
+.buttons {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  text-align: center;
+  margin-top: 50px;
+  width: 100%;
+
+
+  button {
+    border: 1px solid  $whiteColor;
+    border-radius: 10px;
+    color: $whiteColor;
+
+    padding: 10px 30px;
+    background-color: $headerColor;
+  }
 }
