@@ -1,13 +1,13 @@
 import React, {FC, useState} from 'react';
 import style from "./style.module.scss"
-import PortfolioModal from "../PortfolioModal/PortfolioModal";
+import PortfolioModal from "../../PortfolioModal/PortfolioModal";
 
 interface HeaderProps {
-
+    isPopup: boolean,
+    setIsPopup: any,
 }
 
-const Header: FC <HeaderProps> = ({}) => {
-    const [isPopup ,setIsPopup] = useState<boolean>(false);
+const Header: FC <HeaderProps> = ({isPopup ,setIsPopup}) => {
 
     return (
         <>
