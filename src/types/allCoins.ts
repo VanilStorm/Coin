@@ -12,7 +12,7 @@ export interface IAllCoins {
     priceUsd: string,
 }
 
-export interface coinsAll {
+export interface AllCoinsFetch {
     data: IAllCoins[]
 }
 
