@@ -1,7 +1,14 @@
 import React, {FC} from 'react';
 import style from "./style.module.scss"
+import {IAllCoins} from "../../../types/allCoins";
 
-const Main: FC = () => {
+interface MainProps {
+    allCoins: IAllCoins[],
+    loading: boolean,
+}
+
+const Main: FC <MainProps> = ({allCoins, loading}) => {
+
     return (
         <table className={style.table}>
             <thead>
@@ -13,33 +20,16 @@ const Main: FC = () => {
             </thead>
 
             <tbody>
-            <tr onClick={() => console.log("BTC")}>
-                <td>1</td>
-                <td>Bitcoin</td>
-                <td>$30.000</td>
-                <td>add</td>
-            </tr>
-
-            <tr onClick={() => console.log("BTC 2")}>
-                <td>1</td>
-                <td>Bitcoin</td>
-                <td>$30.000</td>
-                <td>add</td>
-            </tr>
-
-            <tr>
-                <td>1</td>
-                <td>Bitcoin</td>
-                <td>$30.000</td>
-                <td>add</td>
-            </tr>
-
-            <tr>
-                <td>1</td>
-                <td>Bitcoin</td>
-                <td>$30.000</td>
-                <td>add</td>
-            </tr>
+            {allCoins.map(item => {
+                return (
+                    <tr key={item.id}>
+                        <td>{item.rank}</td>
+                        <td>{item.name}</td>
+                        <td>$ {Number(item.priceUsd).toFixed(6)}</td>
+                        <td>Add</td>
+                    </tr>
+                )
+            })}
             </tbody>
         </table>
     );

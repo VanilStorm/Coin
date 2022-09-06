@@ -1,0 +1,5 @@
+export enum  AllCoinsActionTypes{
+    FETCH_ALL_COINS = 'FETCH_ALL_COINS',
+    FETCHING = 'FETCHING',
+    FETCH_COINS_ERROR = 'FETCH_COINS_ERROR',
+}
