@@ -2,10 +2,12 @@ import React, {FC} from 'react';
 import {useTypeSelector} from "../../../hooks/useTypeSelector";
 import style from "./style.module.scss"
 import Chart from "../../chart/chart";
+import {useActions} from "../../../hooks/useActions";
 
 
 const SingleCoinPage: FC = () => {
-    const {singleCoin} = useTypeSelector((state) => state.AllCoinsReducer)
+    const {singleCoin} = useTypeSelector((state) => state.AllCoinsReducer);
+    const {setToDefaultCoin} = useActions();
 
     if (!singleCoin.id) {
         return <h2>Loading...</h2>
@@ -16,7 +18,7 @@ const SingleCoinPage: FC = () => {
         <div>
             <div className={style.fields}>
                 <div className={style.field}>
-                    <span>Rank: </span>
+                    <span>Rank:</span>
                     <span> {singleCoin.rank}</span>
                 </div>
                 <div>
@@ -34,6 +36,8 @@ const SingleCoinPage: FC = () => {
             </div>
 
             <Chart/>
+
+            <button onClick={() => setToDefaultCoin()}>Back</button>
         </div>
     );
 };
