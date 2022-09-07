@@ -34,7 +34,11 @@ interface coinsError {
     type: AllCoinsActionTypes.FETCH_COINS_ERROR,
 }
 
+interface defaultCoin {
+    type: AllCoinsActionTypes.DEFAULT_SINGLE_COIN,
+}
 
 
 
-export type AllCoinsActions = fetchAllCoins | fetchSingleCoin | coinsFetching | coinsError;
+
+export type AllCoinsActions = fetchAllCoins | fetchSingleCoin | coinsFetching | coinsError | defaultCoin;

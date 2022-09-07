@@ -3,7 +3,6 @@ import Main from "../layout/Main";
 import {useTypeSelector} from "../../../hooks/useTypeSelector";
 import {useActions} from "../../../hooks/useActions";
 import {IAllCoins} from "../../../types/allCoins";
-import {Navigate} from "react-router-dom";
 import SingleCoinPage from "../../singleCoin/layout/singleCoinPage";
 
 const MainContainer = () => {
@@ -68,8 +67,8 @@ const MainContainer = () => {
         setCoin(singleCoin)
     }
 
-    if (coin.id ) {
-        return <SingleCoinPage />
+    if (singleCoin.id && coin.id) {
+        return <SingleCoinPage/>
     }
 
 

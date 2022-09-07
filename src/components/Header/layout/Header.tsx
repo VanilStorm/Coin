@@ -1,25 +1,37 @@
-import React, {FC, useState} from 'react';
+import React, {FC} from 'react';
 import style from "./style.module.scss"
 import PortfolioModal from "../../PortfolioModal/PortfolioModal";
+import {IAllCoins} from "../../../types/allCoins";
 
 interface HeaderProps {
     isPopup: boolean,
+    topThreeCoins: IAllCoins[],
+    singleCoin: IAllCoins,
+    setToDefaultCoin: any,
     setIsPopup: any,
 }
 
-const Header: FC <HeaderProps> = ({isPopup ,setIsPopup}) => {
+const Header: FC <HeaderProps> = ({isPopup ,setIsPopup, topThreeCoins, setToDefaultCoin}) => {
 
     return (
         <>
-            <header className={style.header}>
+            <header className={style.header} onClick={() => {
+                setToDefaultCoin();
+            }}>
                 <div className={style.popularCoins}>
-                    <div className={style.coin}>popular coin</div>
-                    <div className={style.coin}>popular coin</div>
-                    <div className={style.coin}>popular coin</div>
+                    <span>Top coins:</span>
+                    {topThreeCoins.length ? topThreeCoins.map(item => {
+                        return (
+                            <div key={item.id} className={style.coin}>{item.name}</div>
+                        )
+                    }) : <span>Loading...</span>}
                     <div className={style.portfolioValue}>134,32 USD +2,38 (1,80 %)</div>
                 </div>
-                <div className={style.portfolio} onClick={() => setIsPopup(true)}>
-                    coin portfolio
+                <div className={style.portfolio} onClick={(e) => {
+                    e.stopPropagation();
+                    setIsPopup(true);
+                }}>
+                    Coin portfolio
                 </div>
             </header>
 

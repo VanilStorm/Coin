@@ -1,7 +1,7 @@
 import {Dispatch} from "react";
-import {AllCoinsActions, AllCoinsFetch, IAllCoins,} from "../../../types/allCoins";
+import {AllCoinsActions, AllCoinsFetch,} from "../../../../types/allCoins";
 import axios from "axios";
-import {AllCoinsActionTypes} from "../../../enums/AllCoinsEnums";
+import {AllCoinsActionTypes} from "../../../../enums/AllCoinsEnums";
 
 export const fetchAllCoins = () => {
     return async (dispatch: Dispatch<AllCoinsActions>) => {
@@ -25,5 +25,11 @@ export const fetchSingleCoin = (value: string) => {
         } catch (e) {
             console.log(e)
         }
+    }
+}
+
+export const setToDefaultCoin = () => {
+    return (dispatch: Dispatch<AllCoinsActions>) => {
+        dispatch({type: AllCoinsActionTypes.DEFAULT_SINGLE_COIN})
     }
 }

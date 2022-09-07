@@ -8,16 +8,23 @@
   font-family: $headerFont;
   font-size: $fontSize;
   background-color: $headerColor;
+  color: $whiteColor;
+  cursor: pointer;
 
   .popularCoins {
     display: flex;
 
     .coin {
-      margin-right: 10px;
+      margin: 0 10px;
     }
   }
 
   .portfolio {
     cursor: pointer;
+    transition: .3s;
+  }
+
+  .portfolio:hover {
+    color: #d2d2d2;
   }
 }

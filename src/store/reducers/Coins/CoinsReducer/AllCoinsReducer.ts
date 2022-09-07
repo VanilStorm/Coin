@@ -1,5 +1,5 @@
-import {AllCoinsActions, IAllCoins} from "../../../types/allCoins";
-import {AllCoinsActionTypes} from "../../../enums/AllCoinsEnums";
+import {AllCoinsActions, IAllCoins} from "../../../../types/allCoins";
+import {AllCoinsActionTypes} from "../../../../enums/AllCoinsEnums";
 
 interface ICoins {
     allCoins: IAllCoins[],
@@ -42,6 +42,20 @@ export const AllCoinsReducer = (state = initialState, action: AllCoinsActions): 
 
         case AllCoinsActionTypes.FETCH_SINGLE_COIN: {
             return {...state, singleCoin: action.payload, loading: false}
+        }
+
+        case AllCoinsActionTypes.DEFAULT_SINGLE_COIN: {
+            return {...state, singleCoin: {
+                    id: '',
+                    rank: '',
+                    symbol: '',
+                    name: '',
+                    supply: '',
+                    maxSupply: '',
+                    marketCapUsd: '',
+                    volumeUsd24Hr: '',
+                    priceUsd: '',
+                }}
         }
 
         default: {
