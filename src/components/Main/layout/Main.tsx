@@ -5,10 +5,11 @@ import {IAllCoins} from "../../../types/allCoins";
 interface MainProps {
     allCoins: IAllCoins[],
     handlePageChange: any,
+    handleCoinFetch: any,
     pageNum: number,
 }
 
-const Main: FC <MainProps> = ({allCoins, handlePageChange, pageNum}) => {
+const Main: FC <MainProps> = ({allCoins, handlePageChange, pageNum, handleCoinFetch}) => {
 
     return (
         <>
@@ -24,7 +25,7 @@ const Main: FC <MainProps> = ({allCoins, handlePageChange, pageNum}) => {
                 <tbody>
                 {allCoins.map(item => {
                     return (
-                        <tr className={style.tableRow} key={item.id}>
+                        <tr className={style.tableRow} key={item.id} onClick={() => handleCoinFetch(item.id)}>
                             <td>{item.rank}</td>
                             <td>{item.name}</td>
                             <td>$ {Number(item.priceUsd).toFixed(6)}</td>

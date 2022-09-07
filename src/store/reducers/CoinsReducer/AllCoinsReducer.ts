@@ -3,14 +3,24 @@ import {AllCoinsActionTypes} from "../../../enums/AllCoinsEnums";
 
 interface ICoins {
     allCoins: IAllCoins[],
-    singleCoin: IAllCoins[],
+    singleCoin: IAllCoins,
     loading: boolean,
     error: boolean,
 }
 
 const initialState: ICoins = {
     allCoins: [],
-    singleCoin: [],
+    singleCoin: {
+        id: '',
+        rank: '',
+        symbol: '',
+        name: '',
+        supply: '',
+        maxSupply: '',
+        marketCapUsd: '',
+        volumeUsd24Hr: '',
+        priceUsd: '',
+    },
     loading: false,
     error: false,
 

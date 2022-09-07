@@ -23,7 +23,7 @@ interface fetchAllCoins {
 
 interface fetchSingleCoin {
     type: AllCoinsActionTypes.FETCH_SINGLE_COIN,
-    payload: IAllCoins[],
+    payload: IAllCoins,
 }
 
 interface coinsFetching {

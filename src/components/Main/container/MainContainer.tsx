@@ -4,11 +4,24 @@ import {useTypeSelector} from "../../../hooks/useTypeSelector";
 import {useActions} from "../../../hooks/useActions";
 import {IAllCoins} from "../../../types/allCoins";
 import {Navigate} from "react-router-dom";
+import SingleCoinPage from "../../singleCoin/layout/singleCoinPage";
 
 const MainContainer = () => {
-    const {allCoins,loading} = useTypeSelector(state => state.AllCoinsReducer);
+    const {allCoins,singleCoin ,loading} = useTypeSelector(state => state.AllCoinsReducer);
+    const {fetchAllCoins, fetchSingleCoin} = useActions();
     const [pageNum, setPageNum] = useState<number>(0);
     const [coins, setCoins] = useState<IAllCoins[]>([]);
+    const [coin, setCoin] = useState<IAllCoins>({
+        id: '',
+        rank: '',
+        symbol: '',
+        name: '',
+        supply: '',
+        maxSupply: '',
+        marketCapUsd: '',
+        volumeUsd24Hr: '',
+        priceUsd: '',
+    })
 
 
     const coinsPerPage: number = 25;
@@ -37,7 +50,10 @@ const MainContainer = () => {
         }
     }
 
-    const {fetchAllCoins} = useActions();
+    const handleCoinFetch = (value: string): void => {
+        fetchSingleCoin(value);
+    }
+
 
     useEffect(() => {
         fetchAllCoins();
@@ -48,13 +64,23 @@ const MainContainer = () => {
         setCoins(allCoins)
     }
 
+    if (singleCoin.id && !coin.id) {
+        setCoin(singleCoin)
+    }
+
+    if (coin.id ) {
+        return <SingleCoinPage />
+    }
+
+
     if (loading) {
         return <h2>Loading</h2>
     }
 
     return (
         <>
-            <Main allCoins={displayCoinsPagination} handlePageChange={handlePageChange} pageNum={pageNum}/>
+            <Main allCoins={displayCoinsPagination} handlePageChange={handlePageChange}
+                  handleCoinFetch={handleCoinFetch} pageNum={pageNum}/>
         </>
     );
 };
