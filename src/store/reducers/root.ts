@@ -1,5 +1,5 @@
 import {combineReducers} from "redux";
-import {AllCoinsReducer} from "./AllCoinsReducer/AllCoinsReducer";
+import {AllCoinsReducer} from "./CoinsReducer/AllCoinsReducer";
 
 export const rootReducer = combineReducers({
     AllCoinsReducer,

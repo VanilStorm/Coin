@@ -24,11 +24,11 @@ const Main: FC <MainProps> = ({allCoins, handlePageChange, pageNum}) => {
                 <tbody>
                 {allCoins.map(item => {
                     return (
-                        <tr key={item.id}>
+                        <tr className={style.tableRow} key={item.id}>
                             <td>{item.rank}</td>
                             <td>{item.name}</td>
                             <td>$ {Number(item.priceUsd).toFixed(6)}</td>
-                            <td>Add</td>
+                            <td onClick={(e) => e.stopPropagation()}>+</td>
                         </tr>
                     )
                 })}

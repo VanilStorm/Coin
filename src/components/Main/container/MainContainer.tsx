@@ -3,11 +3,13 @@ import Main from "../layout/Main";
 import {useTypeSelector} from "../../../hooks/useTypeSelector";
 import {useActions} from "../../../hooks/useActions";
 import {IAllCoins} from "../../../types/allCoins";
+import {Navigate} from "react-router-dom";
 
 const MainContainer = () => {
     const {allCoins,loading} = useTypeSelector(state => state.AllCoinsReducer);
     const [pageNum, setPageNum] = useState<number>(0);
     const [coins, setCoins] = useState<IAllCoins[]>([]);
+
 
     const coinsPerPage: number = 25;
     const pageVisited: number = pageNum * coinsPerPage;
@@ -40,6 +42,7 @@ const MainContainer = () => {
     useEffect(() => {
         fetchAllCoins();
     },[])
+
 
     if (allCoins.length && !coins.length) {
         setCoins(allCoins)

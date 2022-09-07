@@ -15,3 +15,15 @@ export const fetchAllCoins = () => {
         }
     }
 }
+
+export const fetchSingleCoin = (value: string) => {
+    return async (dispatch: Dispatch<any>) => {
+        try {
+            dispatch({type: AllCoinsActionTypes.FETCHING})
+            const res = await axios.get<AllCoinsFetch>(`https://api.coincap.io/v2/assets/${value}`);
+            dispatch({type: AllCoinsActionTypes.FETCH_SINGLE_COIN, payload: res.data.data})
+        } catch (e) {
+            console.log(e)
+        }
+    }
+}

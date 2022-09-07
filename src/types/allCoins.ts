@@ -21,6 +21,11 @@ interface fetchAllCoins {
     payload: IAllCoins[],
 }
 
+interface fetchSingleCoin {
+    type: AllCoinsActionTypes.FETCH_SINGLE_COIN,
+    payload: IAllCoins[],
+}
+
 interface coinsFetching {
     type: AllCoinsActionTypes.FETCHING,
 }
@@ -32,4 +37,4 @@ interface coinsError {
 
 
 
-export type AllCoinsActions = fetchAllCoins | coinsFetching | coinsError;
+export type AllCoinsActions = fetchAllCoins | fetchSingleCoin | coinsFetching | coinsError;

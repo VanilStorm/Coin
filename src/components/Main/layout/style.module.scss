@@ -30,3 +30,9 @@
     background-color: $headerColor;
   }
 }
+
+.tableRow:hover {
+  background-color: $modalBackgroundColor;
+  color: $whiteColor;
+  cursor: pointer;
+}

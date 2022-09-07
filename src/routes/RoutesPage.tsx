@@ -5,7 +5,7 @@ import MainContainer from "../components/Main/container/MainContainer";
 const RoutesPage: FC = () => {
     return (
         <Routes>
-            <Route path="/" element={<MainContainer/>}/>
+            <Route path="*" element={<MainContainer/>}/>
         </Routes>
     );
 
