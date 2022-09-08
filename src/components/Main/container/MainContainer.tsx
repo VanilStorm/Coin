@@ -21,7 +21,11 @@ const MainContainer = () => {
         volumeUsd24Hr: '',
         priceUsd: '',
     })
+    const [isOpen, setIsOpen] = useState<boolean>(false);
 
+    useEffect(() => {
+        fetchAllCoins(coinsPerPage * pageNum);
+    },[pageNum])
 
     const coinsPerPage: number = 25;
     const limit: number = 100;
@@ -54,11 +58,6 @@ const MainContainer = () => {
     }
 
 
-    useEffect(() => {
-        fetchAllCoins(coinsPerPage * pageNum);
-    },[pageNum])
-
-
     if (allCoins.length && !coins.length) {
         setCoins(allCoins)
     }
@@ -79,7 +78,9 @@ const MainContainer = () => {
     return (
         <>
             <Main allCoins={allCoins} handlePageChange={handlePageChange}
-                  handleCoinFetch={handleCoinFetch} pageNum={pageNum} pages={pages}/>
+                  handleCoinFetch={handleCoinFetch} pageNum={pageNum} pages={pages} isOpen={isOpen}
+                  setIsOpen={setIsOpen}
+            />
         </>
     );
 };

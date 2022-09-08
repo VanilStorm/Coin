@@ -8,7 +8,6 @@ interface PortfolioModalProps {
 
 const PortfolioModal: FC <PortfolioModalProps> = ({isPopup, setIsPopup}) => {
 
-
     return (
         <div className={isPopup ? style.modal : style.modal + " " + style.hide} onClick={() => setIsPopup(false)}>
             <div className={style.content} onClick={(e) => e.stopPropagation()}>

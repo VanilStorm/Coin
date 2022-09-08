@@ -17,9 +17,9 @@ const SingleCoinPage: FC = () => {
     return (
         <div>
             <div className={style.fields}>
-                <div className={style.field}>
-                    <span>Rank:</span>
-                    <span> {singleCoin.rank}</span>
+                <div>
+                    <span>Rank: </span>
+                    <span>{singleCoin.rank}</span>
                 </div>
                 <div>
                     <span>Name: </span>
