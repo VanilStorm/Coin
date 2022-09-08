@@ -39,7 +39,12 @@ interface defaultCoin {
     type: AllCoinsActionTypes.DEFAULT_SINGLE_COIN,
 }
 
+interface fetchCurrentCoin {
+    type: AllCoinsActionTypes.FETCH_CURRENT_COIN,
+    payload: IAllCoins[],
+}
 
 
 
-export type AllCoinsActions = fetchAllCoins | fetchSingleCoin | coinsFetching | coinsError | defaultCoin;
+
+export type AllCoinsActions = fetchAllCoins | fetchSingleCoin | coinsFetching | coinsError | defaultCoin | fetchCurrentCoin;

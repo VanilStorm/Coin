@@ -3,6 +3,7 @@ import {AllCoinsActionTypes} from "../../../../enums/AllCoinsEnums";
 
 interface ICoins {
     allCoins: IAllCoins[],
+    currentCoins: any,
     singleCoin: IAllCoins,
     loading: boolean,
     error: boolean,
@@ -10,6 +11,7 @@ interface ICoins {
 
 const initialState: ICoins = {
     allCoins: [],
+    currentCoins: [],
     singleCoin: {
         id: '',
         rank: '',
@@ -38,6 +40,10 @@ export const AllCoinsReducer = (state = initialState, action: AllCoinsActions): 
 
         case AllCoinsActionTypes.FETCH_ALL_COINS: {
             return {...state, allCoins: action.payload, loading: false}
+        }
+
+        case AllCoinsActionTypes.FETCH_CURRENT_COIN: {
+            return {...state, currentCoins: [...state.currentCoins, action.payload], loading: false}
         }
 
         case AllCoinsActionTypes.FETCH_SINGLE_COIN: {

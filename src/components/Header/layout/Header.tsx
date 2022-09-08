@@ -8,12 +8,14 @@ interface HeaderProps {
     topThreeCoins: IAllCoins[],
     singleCoin: IAllCoins,
     portfolioCoins: IAllCoins[],
+    newCoinCosts: number,
+    portfolioCost: number,
     handleDeleteCoin: any,
     setIsPopup: any,
 }
 
 const Header: FC <HeaderProps> = ({isPopup ,setIsPopup, topThreeCoins,
-                                      portfolioCoins, handleDeleteCoin}) => {
+                                      portfolioCoins, handleDeleteCoin, portfolioCost,newCoinCosts}) => {
 
     return (
         <>
@@ -25,7 +27,15 @@ const Header: FC <HeaderProps> = ({isPopup ,setIsPopup, topThreeCoins,
                             <div key={item.id} className={style.coin}>{item.name}</div>
                         )
                     }) : <span>Loading...</span>}
-                    <div className={style.portfolioValue}>134,32 USD +2,38 (1,80 %)</div>
+                    <div className={style.portfolioValue}> | Portfolio cost:
+                        $
+                        {' '}
+                        {localStorage['portfolio'] ? portfolioCost : 0}
+                        {' Profit: '}
+                        $ {localStorage['portfolio'] ? newCoinCosts > portfolioCost ? `+${(newCoinCosts - portfolioCost).toFixed(6)}`:
+                            (newCoinCosts - portfolioCost).toFixed(6): '0 '}
+                        ({localStorage['portfolio'] ? `${((newCoinCosts - portfolioCost) / (newCoinCosts * 100)).toFixed(6)}
+                             %`: ' 0 %'})</div>
                 </div>
                 <div className={style.portfolio} onClick={(e) => {
                     e.stopPropagation();
