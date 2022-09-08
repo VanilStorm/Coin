@@ -24,14 +24,12 @@ const MainContainer = () => {
 
 
     const coinsPerPage: number = 25;
-    const pageVisited: number = pageNum * coinsPerPage;
-
-    const displayCoinsPagination = coins.slice(pageVisited, pageVisited + coinsPerPage)
+    const limit: number = 100;
 
     const handlePageChange = (e: React.ChangeEvent<HTMLButtonElement>): void => {
         switch (e.target.name ) {
             case 'next': {
-                if (pageNum === (allCoins.length / coinsPerPage) - 1) {
+                if (pageNum === (limit/ coinsPerPage) - 1) {
                     return;
                 } else {
                     setPageNum((num) => num + 1)
@@ -55,8 +53,8 @@ const MainContainer = () => {
 
 
     useEffect(() => {
-        fetchAllCoins();
-    },[])
+        fetchAllCoins(coinsPerPage * pageNum);
+    },[pageNum])
 
 
     if (allCoins.length && !coins.length) {
@@ -78,7 +76,7 @@ const MainContainer = () => {
 
     return (
         <>
-            <Main allCoins={displayCoinsPagination} handlePageChange={handlePageChange}
+            <Main allCoins={allCoins} handlePageChange={handlePageChange}
                   handleCoinFetch={handleCoinFetch} pageNum={pageNum}/>
         </>
     );
