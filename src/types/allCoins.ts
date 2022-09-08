@@ -10,6 +10,7 @@ export interface IAllCoins {
     marketCapUsd: string,
     volumeUsd24Hr: string,
     priceUsd: string,
+    qnt?: string | number,
 }
 
 export interface AllCoinsFetch {

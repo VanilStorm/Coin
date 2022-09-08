@@ -7,14 +7,21 @@ interface MainProps {
     allCoins: IAllCoins[],
     pages: number,
     isOpen: boolean,
+    currentCoin: IAllCoins,
+    handleSetPortfolioCoin: any,
+    handleSetQnt: any,
     handlePageChange: any,
     handleCoinFetch: any,
+    handleCurrentCoin: any,
     setIsOpen: any,
     pageNum: number,
 }
 
 const Main: FC <MainProps> = ({allCoins, handlePageChange, pageNum,
-                                  handleCoinFetch, pages, isOpen, setIsOpen}) => {
+                                  handleCoinFetch, pages, isOpen, setIsOpen,
+                                  handleCurrentCoin, currentCoin, handleSetQnt,
+                                  handleSetPortfolioCoin
+}) => {
 
     return (
         <>
@@ -36,6 +43,7 @@ const Main: FC <MainProps> = ({allCoins, handlePageChange, pageNum,
                             <td>$ {Number(item.priceUsd).toFixed(6)}</td>
                             <td onClick={(e) => {
                                 e.stopPropagation();
+                                handleCurrentCoin(item)
                                 setIsOpen(true);
                             }}>+</td>
                         </tr>
@@ -50,7 +58,9 @@ const Main: FC <MainProps> = ({allCoins, handlePageChange, pageNum,
                 <button className={(pageNum + 1) === pages && style.hidden} onClick={handlePageChange} name='next'>Next</button>
             </div>
 
-            <AddCoin isOpen={isOpen} setIsOpen={setIsOpen}/>
+            <AddCoin isOpen={isOpen} setIsOpen={setIsOpen} currentCoin={currentCoin}
+                     handleSetQnt={handleSetQnt} handleSetPortfolioCoin={handleSetPortfolioCoin}
+            />
         </>
     );
 };
