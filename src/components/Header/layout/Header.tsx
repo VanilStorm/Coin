@@ -8,12 +8,13 @@ interface HeaderProps {
     topThreeCoins: IAllCoins[],
     singleCoin: IAllCoins,
     portfolioCoins: IAllCoins[],
+    handleDeleteCoin: any,
     setToDefaultCoin: any,
     setIsPopup: any,
 }
 
 const Header: FC <HeaderProps> = ({isPopup ,setIsPopup, topThreeCoins,
-                                      setToDefaultCoin, portfolioCoins}) => {
+                                      setToDefaultCoin, portfolioCoins, handleDeleteCoin}) => {
 
     return (
         <>
@@ -37,7 +38,8 @@ const Header: FC <HeaderProps> = ({isPopup ,setIsPopup, topThreeCoins,
                 </div>
             </header>
 
-            <PortfolioModal isPopup={isPopup} setIsPopup={setIsPopup} portfolioCoins={portfolioCoins}/>
+            <PortfolioModal isPopup={isPopup} setIsPopup={setIsPopup}
+                            portfolioCoins={portfolioCoins} handleDeleteCoin={handleDeleteCoin}/>
         </>
     );
 };

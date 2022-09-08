@@ -7,3 +7,9 @@ export const setNewCoin = (value: IPortfolioCoins) => {
         dispatch({type: PortfolioEnums.SET_NEW_COIN, payload: value})
     }
 }
+
+export const deleteCoin = (value: string) => {
+    return (dispatch: Dispatch<AllPortfolioActions>) => {
+        dispatch({type: PortfolioEnums.DELETE_COIN, payload: value})
+    }
+}

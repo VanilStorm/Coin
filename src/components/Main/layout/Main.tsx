@@ -53,9 +53,9 @@ const Main: FC <MainProps> = ({allCoins, handlePageChange, pageNum,
             </table>
 
             <div className={style.buttons}>
-                <button className={(pageNum + 1) === 1 && style.hidden} onClick={handlePageChange} name='prev'>Prev</button>
+                <button className={(pageNum + 1) === 1 ? style.hidden : ''} onClick={handlePageChange} name='prev'>Prev</button>
                 <span><strong>{pageNum + 1} of {pages}</strong></span>
-                <button className={(pageNum + 1) === pages && style.hidden} onClick={handlePageChange} name='next'>Next</button>
+                <button className={(pageNum + 1) === pages ? style.hidden : ''} onClick={handlePageChange} name='next'>Next</button>
             </div>
 
             <AddCoin isOpen={isOpen} setIsOpen={setIsOpen} currentCoin={currentCoin}

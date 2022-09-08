@@ -17,4 +17,9 @@ interface setNewCoin {
     payload: IPortfolioCoins,
 }
 
-export type AllPortfolioActions = setNewCoin;
+interface deleteCoin {
+    type: PortfolioEnums.DELETE_COIN,
+    payload: string,
+}
+
+export type AllPortfolioActions = setNewCoin | deleteCoin;

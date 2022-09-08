@@ -16,6 +16,10 @@ export const PortfolioReducer = (state = initialState, action: AllPortfolioActio
             return {...state, portfolio: [...state.portfolio, action.payload]};
         }
 
+        case PortfolioEnums.DELETE_COIN: {
+            return {...state, portfolio: [...state.portfolio.filter(item => item.name !== action.payload)]}
+        }
+
         default: {
             return state;
         }
