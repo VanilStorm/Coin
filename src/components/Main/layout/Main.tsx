@@ -4,12 +4,14 @@ import {IAllCoins} from "../../../types/allCoins";
 
 interface MainProps {
     allCoins: IAllCoins[],
+    pages: number,
     handlePageChange: any,
     handleCoinFetch: any,
     pageNum: number,
 }
 
-const Main: FC <MainProps> = ({allCoins, handlePageChange, pageNum, handleCoinFetch}) => {
+const Main: FC <MainProps> = ({allCoins, handlePageChange, pageNum,
+                                  handleCoinFetch, pages}) => {
 
     return (
         <>
@@ -37,9 +39,9 @@ const Main: FC <MainProps> = ({allCoins, handlePageChange, pageNum, handleCoinFe
             </table>
 
             <div className={style.buttons}>
-                <button onClick={handlePageChange} name='prev'>Prev</button>
-                <span><strong>{pageNum + 1}</strong></span>
-                <button onClick={handlePageChange} name='next'>Next</button>
+                <button className={(pageNum + 1) === 1 && style.hidden} onClick={handlePageChange} name='prev'>Prev</button>
+                <span><strong>{pageNum + 1} of {pages}</strong></span>
+                <button className={(pageNum + 1) === pages && style.hidden} onClick={handlePageChange} name='next'>Next</button>
             </div>
         </>
     );

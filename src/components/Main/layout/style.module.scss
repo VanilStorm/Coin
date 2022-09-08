@@ -20,7 +20,6 @@
   margin-top: 50px;
   width: 100%;
 
-
   button {
     border: 1px solid  $whiteColor;
     border-radius: 10px;
@@ -36,3 +35,8 @@
   color: $whiteColor;
   cursor: pointer;
 }
+
+.hidden {
+  visibility: hidden;
+}
+
