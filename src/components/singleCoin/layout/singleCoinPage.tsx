@@ -1,12 +1,21 @@
 import React, {FC} from 'react';
-import {useTypeSelector} from "../../../hooks/useTypeSelector";
 import style from "./style.module.scss"
 import Chart from "../../chart/chart";
 import {useActions} from "../../../hooks/useActions";
+import {IAllCoins} from "../../../types/allCoins";
+
+interface SingleCoinProps {
+    currentCoin: IAllCoins,
+    singleCoin: IAllCoins,
+    handleSetPortfolioCoin: any,
+    handleSetDefaultCoin: any,
+    handleSetQnt: any,
+}
 
 
-const SingleCoinPage: FC = () => {
-    const {singleCoin} = useTypeSelector((state) => state.AllCoinsReducer);
+const SingleCoinPage: FC <SingleCoinProps> = ({handleSetQnt, currentCoin,
+                                                  singleCoin, handleSetPortfolioCoin,
+                                                  handleSetDefaultCoin}) => {
     const {setToDefaultCoin} = useActions();
 
     if (!singleCoin.id) {
@@ -16,28 +25,41 @@ const SingleCoinPage: FC = () => {
 
     return (
         <div>
-            <div className={style.fields}>
-                <div>
-                    <span>Rank: </span>
-                    <span>{singleCoin.rank}</span>
+            <div className={style.params}>
+                <div className={style.fields}>
+                    <div>
+                        <span>Rank: </span>
+                        <span>{singleCoin.rank}</span>
+                    </div>
+                    <div>
+                        <span>Name: </span>
+                        <span>{singleCoin.name}</span>
+                    </div>
+                    <div>
+                        <span>Price: </span>
+                        <span>$ {Number(singleCoin.priceUsd).toFixed(6)}</span>
+                    </div>
+                    <div>
+                        <span>Market cap (USD): </span>
+                        <span>$ {Number(singleCoin.marketCapUsd).toFixed(6)}</span>
+                    </div>
                 </div>
-                <div>
-                    <span>Name: </span>
-                    <span>{singleCoin.name}</span>
-                </div>
-                <div>
-                    <span>Price: </span>
-                    <span>$ {Number(singleCoin.priceUsd).toFixed(6)}</span>
-                </div>
-                <div>
-                    <span>Market cap (USD): </span>
-                    <span>$ {Number(singleCoin.marketCapUsd).toFixed(6)}</span>
+
+                <div className={style.inputField}>
+                    <input type="number" placeholder='Example 1.542' onChange={handleSetQnt} value={currentCoin.qnt}/>
+                    <button onClick={() => {
+                        handleSetPortfolioCoin();
+                        setToDefaultCoin();
+                    }}>Add</button>
                 </div>
             </div>
 
             <Chart/>
 
-            <button onClick={() => setToDefaultCoin()}>Back</button>
+            <button onClick={() => {
+                handleSetDefaultCoin()
+                setToDefaultCoin()
+            }}>Back</button>
         </div>
     );
 };

@@ -26,7 +26,7 @@ const AddCoin: FC <AddCoinProps> = ({isOpen, setIsOpen, currentCoin, handleSetQn
 
                 <div>
                     <span>Quantity: </span>
-                    <input step='1' min={0} max={100} type="number" onChange={handleSetQnt} value={currentCoin.qnt}/>
+                    <input step='1' min={0} max={100} type="number" placeholder='Example 1.542' onChange={handleSetQnt} value={currentCoin.qnt}/>
                 </div>
 
                 <button onClick={handleSetPortfolioCoin}>Add</button>

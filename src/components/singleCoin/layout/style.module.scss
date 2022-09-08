@@ -1,7 +1,13 @@
 @import "../../../styles/colors";
 
+.params {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .fields {
-  margin: 50px auto;
+  margin: 50px;
 
   .field {
     display: flex;
@@ -22,4 +28,10 @@ button {
 
 button:hover {
   background-color: #3b5880;
+}
+
+.inputField {
+  button {
+    margin-left: 10px;
+  }
 }

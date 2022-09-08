@@ -75,7 +75,11 @@ const MainContainer = () => {
     }
 
     const handleSetQnt = (e: React.ChangeEvent<HTMLInputElement>): void => {
-        setCurrentCoin((coin) => ({...coin, qnt: e.target.value}))
+        if (!currentCoin.id) {
+            setCurrentCoin(() => ({...singleCoin, qnt: e.target.value}))
+        } else {
+            setCurrentCoin((coin) => ({...coin, qnt: e.target.value}))
+        }
     }
 
     const handleSetPortfolioCoin = () => {
@@ -84,7 +88,9 @@ const MainContainer = () => {
             return;
         }
 
-        setNewCoin(currentCoin);
+        if (currentCoin.id && currentCoin.qnt) {
+            setNewCoin(currentCoin);
+        }
 
         if (localStorage["portfolio"]) {
             const items = JSON.parse(localStorage.getItem('portfolio') || '');
@@ -114,6 +120,21 @@ const MainContainer = () => {
         setIsOpen(false);
     }
 
+    const handleSetDefaultCoin = () => {
+        setCurrentCoin({
+            id: '',
+            rank: '',
+            symbol: '',
+            name: '',
+            supply: '',
+            maxSupply: '',
+            marketCapUsd: '',
+            volumeUsd24Hr: '',
+            priceUsd: '',
+            qnt: '',
+        });
+    }
+
     if (allCoins.length && !coins.length) {
         setCoins(allCoins)
     }
@@ -123,8 +144,12 @@ const MainContainer = () => {
     }
 
     if (singleCoin.id && coin.id) {
-        return <SingleCoinPage/>
+        return <SingleCoinPage singleCoin={singleCoin} handleSetQnt={handleSetQnt}
+                               currentCoin={currentCoin} handleSetPortfolioCoin={handleSetPortfolioCoin}
+                               handleSetDefaultCoin={handleSetDefaultCoin}
+        />
     }
+
 
 
     if (loading) {

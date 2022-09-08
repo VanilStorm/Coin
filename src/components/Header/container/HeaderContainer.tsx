@@ -11,7 +11,6 @@ const HeaderContainer: FC = () => {
     const [portfolioCoins, setPortfolioCoins] = useState<IAllCoins[]>([])
     const {allCoins,singleCoin} = useTypeSelector(state => state.AllCoinsReducer);
     const {portfolio} = useTypeSelector(state => state.PortfolioReducer);
-    const {setToDefaultCoin} = useActions();
     const {deleteCoin} = usePortfolioActions();
     const [topCoins, setTopCoins] = useState<IAllCoins[]>([]);
 
@@ -47,8 +46,8 @@ const HeaderContainer: FC = () => {
     return (
         <>
             <Header isPopup={isPopup} setIsPopup={setIsPopup} topThreeCoins={topCoins}
-                    singleCoin={singleCoin} setToDefaultCoin={setToDefaultCoin}
-                    portfolioCoins={portfolioCoins} handleDeleteCoin={handleDeleteCoin}
+                    singleCoin={singleCoin} portfolioCoins={portfolioCoins}
+                    handleDeleteCoin={handleDeleteCoin}
             />
         </>
     );

@@ -9,18 +9,15 @@ interface HeaderProps {
     singleCoin: IAllCoins,
     portfolioCoins: IAllCoins[],
     handleDeleteCoin: any,
-    setToDefaultCoin: any,
     setIsPopup: any,
 }
 
 const Header: FC <HeaderProps> = ({isPopup ,setIsPopup, topThreeCoins,
-                                      setToDefaultCoin, portfolioCoins, handleDeleteCoin}) => {
+                                      portfolioCoins, handleDeleteCoin}) => {
 
     return (
         <>
-            <header className={style.header} onClick={() => {
-                setToDefaultCoin();
-            }}>
+            <header className={style.header}>
                 <div className={style.popularCoins}>
                     <span>Top coins:</span>
                     {topThreeCoins.length ? topThreeCoins.map(item => {
