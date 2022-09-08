@@ -16,15 +16,23 @@
     padding: 20px;
     border-radius: 12px;
     background-color: $whiteColor;
-    height: 200px;
-    width: 400px;
+    height: 300px;
+    width: 500px;
+    overflow: auto;
 
     display: flex;
-    align-items: center;
     flex-direction: column;
 
-    .myCoin {
+    b {
+      font-weight: 700;
+    }
+
+    .coinParams {
       display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      margin-bottom: 10px;
     }
   }
 }

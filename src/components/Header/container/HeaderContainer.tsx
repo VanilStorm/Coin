@@ -2,14 +2,14 @@ import React, {FC, useEffect, useState} from 'react';
 import Header from "../layout/Header";
 import {useTypeSelector} from "../../../hooks/useTypeSelector";
 import {IAllCoins} from "../../../types/allCoins";
-import {useActions, usePortfolioActions} from "../../../hooks/useActions";
+import {useActions} from "../../../hooks/useActions";
 import {setToDefaultCoin} from "../../../store/reducers/Coins/CoinsActions/CoinsAction";
-import {IPortfolioCoins} from "../../../types/portfolioTypes";
 
 const HeaderContainer: FC = () => {
     const [isPopup ,setIsPopup] = useState<boolean>(false);
+    const [portfolioCoins, setPortfolioCoins] = useState<IAllCoins[]>([])
     const {allCoins,singleCoin} = useTypeSelector(state => state.AllCoinsReducer);
-    const {setNewCoin} = usePortfolioActions();
+    const {portfolio} = useTypeSelector(state => state.PortfolioReducer);
     const {setToDefaultCoin} = useActions();
     const [topCoins, setTopCoins] = useState<IAllCoins[]>([]);
 
@@ -19,14 +19,22 @@ const HeaderContainer: FC = () => {
         setTopCoins(newArr);
     }
 
-    const handleSetCoin = (coin: IPortfolioCoins): void => {
-        setNewCoin(coin);
-    }
+    useEffect(() => {
+        if (localStorage['portfolio']) {
+            const items = JSON.parse(localStorage.getItem('portfolio') || '');
+            console.log(items)
+            setPortfolioCoins(items);
+        } else {
+            console.log(portfolio)
+            setPortfolioCoins(portfolio);
+        }
+    }, [portfolio.length])
 
     return (
         <>
             <Header isPopup={isPopup} setIsPopup={setIsPopup} topThreeCoins={topCoins}
                     singleCoin={singleCoin} setToDefaultCoin={setToDefaultCoin}
+                    portfolioCoins={portfolioCoins}
             />
         </>
     );
